@@ -1,0 +1,30 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.word-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.word-card h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.word-card p {
+  font-size: 1.2rem;
+}
+
+.waabooz-image {
+  margin-top: 20px;
+  width: 150px;
+  height: auto;
+}
