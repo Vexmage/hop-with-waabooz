@@ -1,15 +1,16 @@
 import React from 'react';
 import HomePage from './pages/HomePage';
-import './App.css';  // Import the CSS file for styling
+import 'bootstrap/dist/css/bootstrap.min.css';  // Bootstrap import
+import './App.css';  // Custom styles for the app
 
 function App() {
   return (
     <div className="App">
-      <header className="app-header">
+      <header className="app-header text-center p-4">
         <h1>Hop with Waabooz</h1>
-        <p>Learn a new Ojibwe word every day with your guide, Waabooz!</p>
+        <p>Your daily guide to learning Ojibwe with Waabooz the Rabbit!</p>
       </header>
-      <HomePage />  {/* Main content */}
+      <HomePage />
     </div>
   );
 }

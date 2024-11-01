@@ -1,7 +1,8 @@
 // src/pages/HomePage.js
 import React, { useState, useEffect } from 'react';
 import { fetchWordOfTheDay } from '../services/wordService';
-import { Spinner, Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col, Spinner } from 'react-bootstrap';
+import '../styles/HomePage.css';
 
 const HomePage = () => {
   const [word, setWord] = useState(null);
@@ -9,9 +10,8 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchWord = async () => {
-      const today = new Date().toISOString().split('T')[0]; // e.g., "2024-10-25"
       try {
-        const wordData = await fetchWordOfTheDay(today);
+        const wordData = await fetchWordOfTheDay();
         setWord(wordData);
       } catch (error) {
         console.error("Error fetching word of the day:", error);
@@ -24,9 +24,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Container className="mt-5">
+    <Container className="home-page mt-5">
       <Row className="justify-content-center">
-        <Col md={6}>
+        {/* Daily Word Card */}
+        <Col md={8} lg={6}>
           {loading ? (
             <div className="text-center">
               <Spinner animation="border" role="status">
@@ -34,7 +35,7 @@ const HomePage = () => {
               </Spinner>
             </div>
           ) : word ? (
-            <Card className="text-center">
+            <Card className="mb-4 text-center">
               <Card.Body>
                 <Card.Title>{word.wordOjibwe}</Card.Title>
                 <Card.Text>Translation: {word.translation}</Card.Text>
@@ -44,6 +45,14 @@ const HomePage = () => {
           ) : (
             <p>No word of the day found for today.</p>
           )}
+        </Col>
+
+        {/* Rabbit Guide Placeholder */}
+        <Col md={8} lg={6} className="d-flex justify-content-center">
+          <div className="rabbit-placeholder">
+            {/* Blue box as placeholder for Rabbit Guide */}
+            <p className="text-white">Waabooz will guide you here!</p>
+          </div>
         </Col>
       </Row>
     </Container>

@@ -1,18 +1,24 @@
-import { db } from '../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';  
+import { getDocs, collection, query, where } from 'firebase/firestore'; 
 
-export const fetchWordOfTheDay = async (date) => {
-  console.log("Fetching word for date:", date);  // Log the date
-  const q = query(collection(db, 'words'), where('date', '==', date));
-  const querySnapshot = await getDocs(q);
 
-  if (querySnapshot.empty) {
-    console.log("No word found for this date");
-    return null;
-  }
-
-  const word = [];
-  querySnapshot.forEach((doc) => word.push(doc.data()));
-  console.log("Fetched word:", word[0]);  // Log the word data
-  return word[0];
-};
+export const fetchWordOfTheDay = async () => {
+    // Get the current day of the week (1 = Monday, 7 = Sunday)
+    const dayOfWeek = new Date().getDay() === 0 ? 7 : new Date().getDay();
+  
+    console.log("Fetching word for day of the week:", dayOfWeek);
+  
+    // Query Firestore for the word with this dayOfWeek
+    const q = query(collection(db, "words"), where("dayOfWeek", "==", dayOfWeek.toString()));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) {
+      console.log("No word found for today’s day of the week");
+      return null;
+    }
+  
+    const word = [];
+    querySnapshot.forEach((doc) => word.push(doc.data()));
+    console.log("Fetched word data:", word[0]);
+    return word[0];
+  };

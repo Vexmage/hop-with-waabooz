@@ -5,6 +5,22 @@
   min-height: 60vh;
 }
 
+.rabbit-placeholder {
+  width: 200px;
+  height: 200px;
+  background-color: #007bff; /* Bootstrap blue color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.rabbit-placeholder p {
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 .word-card {
   background-color: #f0f0f0;
   border: 1px solid #ccc;
